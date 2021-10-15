@@ -1,4 +1,4 @@
-@extends('layouts.master')
+    @extends('layouts.master')
 
 @section('title', 'Halaman User')
 
@@ -32,19 +32,37 @@
         </div>
         <div class="card-body">
             @foreach ($buku as $data)
-            Nama Buku : {{ $data->nama_buku }} <br>
-            @if($data->jumlah_halaman > 1)
-            Jumlah Halaman Buku : {{ $data->jumlah_halaman }} <br>
+            Pengarang Buku : {{$data->pengarang->nama_pengarang}}<br>
+            Nama Buku : {{$data->nama_buku}} <br>
+            @if ($data->jumlah_halaman > 1)
+            Jumlah Halaman Buku : {{$data->jumlah_halaman}} <br>
             @else
-            Jumlah Halaman Buku : <b>Belum mempunyai jumlah halaman</b> <br>
+            Jumlah Halaman Buku : <b>Belum mempunyai Buku</b><br>
             @endif
-            Translate Judul Buku : {!! $data->translate_judul_buku ?? '<i>Translate Buku Belum Tersedia</i>' !!} <br>
+            Translate Judul : {!! $item->translate_judul_buku ?? '<b>Translate Tidak Tersedia</b>'!!}<br>   
             <hr>
             @endforeach
-        </div>
+                </div>
         <!-- /.card-body -->
         <div class="card-footer">
-            Footer
+            <h2><b>Pengarang</b></h2><br>
+            @foreach ($pengarang as $data)
+            Pengarang Buku : {{$data->nama_pengarang}}<br>
+            Email Pengarang : {{$data->email}}<br>
+            No telp : {{$data->tlp}}<br>
+            <b>Data Buku</b><br>
+            @foreach ($data->book as $item)
+            @if ($item->jumlah_halaman > 1)
+            
+            Nama Buku : {{$item->nama_buku}} <br>
+            Jumlah Halaman Buku : {{$item->jumlah_halaman}} <br>
+            @else
+            Jumlah Halaman Buku : <b>Belum mempunyai Buku</b><br>
+            @endif
+            Translate Judul : {!! $item->translate_judul_buku ?? '<b>Translate Tidak Tersedia</b>'!!}<br>
+            @endforeach
+            <hr>
+            @endforeach
         </div>
         <!-- /.card-footer-->
     </div>

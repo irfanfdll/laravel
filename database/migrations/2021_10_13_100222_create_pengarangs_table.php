@@ -13,8 +13,11 @@ class CreatePengarangsTable extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('pengarangs', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_pengarang');
+            $table->string('email');
+            $table->string('tlp');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreatePengarangsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('pengarangs');
     }
 }
